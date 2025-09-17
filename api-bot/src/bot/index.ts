@@ -30,9 +30,9 @@ class MinecraftBot {
             host: this.config.host,
             port: this.config.port,
             username: this.config.username,
-            //password: this.config.password,
-            //version: this.config.version,
-            //auth: this.config.password ? 'microsoft' : 'offline',
+            password: this.config.password,
+            version: this.config.version,
+            auth: this.config.password ? 'microsoft' : 'offline',
             hideErrors: false
         });
 

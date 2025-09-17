@@ -76,15 +76,47 @@ weave_client = weave.init("minecraft-bot-1") # metrics client
 # Tools : Santé et Bot
 # ------------------------------------------------------------------------------
 
+# @mcp.tool
+# @weave.op()
+# def health() -> Dict[str, Any]:
+#     """
+#     Vérifie le statut de santé du serveur et du bot.
+#     Retourne le statut du serveur et l'état de connexion du bot.
+#     Endpoint: GET /health
+#     """
+#     return _get("/health")
+
+@mcp.resource("resource://minecraft/items")
+@weave.op()
+def list_items() -> Dict[str, Any]:
+    """
+    Liste tous les items Minecraft disponibles.
+    Retourne une liste d'items avec leurs noms et displayNames.
+    Endpoint: GET /items
+    """
+    return [
+        {"name": "stone", "displayName": "Stone"},
+        {"name": "dirt", "displayName": "Dirt"},
+        {"name": "oak_log", "displayName": "Oak Log"},
+        {"name": "diamond", "displayName": "Diamond"},
+        {"name": "iron_ingot", "displayName": "Iron Ingot"},
+        {"name": "gold_ingot", "displayName": "Gold Ingot"},
+        {"name": "stick", "displayName": "Stick"},
+        {"name": "stone_pickaxe", "displayName": "Stone Pickaxe"},
+        {"name": "iron_sword", "displayName": "Iron Sword"},
+        {"name": "bread", "displayName": "Bread"},
+        # Ajoutez plus d'items si nécessaire
+    ]
+
 @mcp.tool
 @weave.op()
-def health() -> Dict[str, Any]:
+def game_status() -> Dict[str, Any]:
     """
-    Vérifie le statut de santé du serveur et du bot.
-    Retourne le statut du serveur et l'état de connexion du bot.
-    Endpoint: GET /health
+    Obtient le statut complet du serveur Minecraft.
+    Retourne: connected, spawned, username, health, food, position, gameMode, playersOnline
+    Endpoint: GET /game/status
     """
-    return _get("/health")
+    return _get("/game/status")
 
 @mcp.tool
 @weave.op()
