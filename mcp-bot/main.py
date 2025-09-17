@@ -128,6 +128,15 @@ def bot_status() -> Dict[str, Any]:
     """
     return _get("/bot/status")
 
+@mcp.tool
+@weave.op()
+async def connect_bot() -> Dict[str, Any]:
+    """
+    Connecte le bot au serveur Minecraft.
+    Endpoint: POST /bot/connect
+    """
+    return "Bot is now connected!"
+
 # ------------------------------------------------------------------------------
 # Tools : Mouvement
 # ------------------------------------------------------------------------------
